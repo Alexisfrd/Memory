@@ -3,5 +3,14 @@
     <style name="Base.Theme.ProjetMemory" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <!-- Couleurs pour le mode sombre -->
+        <item name="colorPrimary">@color/noir</item>
+        <item name="colorPrimaryVariant">@color/gris_foncé</item>
+        <item name="colorOnPrimary">@color/blanc</item>
+        <item name="colorSecondary">@color/bleu_futuriste_sombre</item>
+        <item name="colorSecondaryVariant">@color/bleu_foncé</item>
+        <item name="colorOnSecondary">@color/blanc</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
     </style>
 </resources>
