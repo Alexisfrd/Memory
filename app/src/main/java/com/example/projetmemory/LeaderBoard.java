@@ -1,30 +1,35 @@
+
 package com.example.projetmemory;
 
-import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import android.content.Intent;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.projetmemory.databinding.ActivityLeaderBoardBinding;
-
 public class LeaderBoard extends AppCompatActivity {
-
     private ActivityLeaderBoardBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-           binding = ActivityLeaderBoardBinding.inflate(getLayoutInflater());
-           setContentView(binding.getRoot());
-        binding.menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                    Intent intent = new Intent(LeaderBoard.this, HomePage.class);
-                    startActivity(intent);
-            }
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_leader_board);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
         });
     }
+    binding.menu.setOnClickListener(new View.OnClickListener()) {
+        public void onClick(View v) {
 
-
+            Intent intent = new Intent(LeaderBoard.this, HomePage.class);
+            startActivity(intent);
+        }
+    };
 }

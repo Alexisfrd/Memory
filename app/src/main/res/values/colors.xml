@@ -1,5 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="rouge">#FF0000</color>
+    <color name="orange">#FFA500</color>
+    <color name="abricot">#FBCEB1</color>
+    <color name="saumon">#FA8072</color>
+    <color name="pêche">#FFE5B4</color>
+    <color name="jaune">#FFFF00</color>
+    <color name="citron">#F7FF3C</color>
+    <color name="safran">#F4C430</color>
+    <color name="vert">#00FF00</color>
+    <color name="vert_foncé">#008000</color>
+    <color name="olive">#808000</color>
+    <color name="cyan">#00FFFF</color>
+    <color name="turquoise">#40E0D0</color>
+    <color name="bleu_ciel">#87CEEB</color>
+    <color name="azur">#007FFF</color>
+    <color name="bleu">#0000FF</color>
+    <color name="indigo">#4B0082</color>
+    <color name="violet">#800080</color>
+    <color name="violet_foncé">#9400D3</color>
+    <color name="aubergine">#3B0910</color>
+    <color name="magenta">#FF00FF</color>
+    <color name="rose">#FFC0CB</color>
+    <color name="cerise">#DE3163</color>
+    <color name="fuchsia">#FF00FF</color>
+    <color name="lavande">#E6E6FA</color>
+    <color name="violet_clair">#F5F5F5</color>
+    <color name="gris">#808080</color>
+    <color name="gris_clair">#D3D3D3</color>
+    <color name="blanc">#FFFFFF</color>
+    <color name="ivoire">#FFFFF0</color>
+    <color name="marron">#800000</color>
+    <color name="corail">#FF6347</color>
+    <color name="ambre">#FFBF00</color>
+    <color name="or">#FFD700</color>
+    <color name="cyan_clair">#E0FFFF</color>
+    <color name="bleu_marine">#000080</color>
+    <color name="noir">#000000</color>
+    <color name="bleu_futuriste">#00CED1</color> <!-- Bleu turquoise -->
+    <color name="vert_futuriste">#00FF7F</color> <!-- Vert printemps -->
+    <color name="bleu_foncé">#00008B</color> <!-- Bleu foncé -->
+    <color name="bleu_futuriste_sombre">#1976D2</color> <!-- Bleu foncé -->
+    <color name="gris_foncé">#424242</color> <!-- Gris foncé -->
+
 </resources>
+
