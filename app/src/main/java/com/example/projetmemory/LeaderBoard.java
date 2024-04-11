@@ -1,12 +1,12 @@
+
 package com.example.projetmemory;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
+        import android.content.Intent;
+        import android.os.Bundle;
+        import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.projetmemory.databinding.ActivityLeaderBoardBinding;
+        import androidx.appcompat.app.AppCompatActivity;
+        import com.example.projetmemory.databinding.ActivityLeaderBoardBinding;
 
 public class LeaderBoard extends AppCompatActivity {
 
