@@ -13,14 +13,14 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
-import com.example.projetmemory.databinding.ActivityHomePageBinding;
+import com.example.projetmemory.databinding.ActivityHomepageBinding;
 
 public class HomePage extends AppCompatActivity {
-    private ActivityHomePageBinding binding;
+    private ActivityHomepageBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityHomePageBinding.inflate(getLayoutInflater());
+        binding = ActivityHomepageBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         binding.buttonStartGame.setOnClickListener(new View.OnClickListener() {
