@@ -32,16 +32,16 @@ public class MainActivityGAME extends AppCompatActivity {
 
     //PARTIE D'AXEL(JEU)
     private List<Integer> cardList;
-    private int[] cardArray = {R.drawable.grelier_jocelyn,
-            R.drawable.grelier_jocelyn,
-            R.drawable.fredouillard_alexis,
-            R.drawable.fredouillard_alexis,
+    private int[] cardArray = {R.drawable.jocelyn,
+            R.drawable.jocelyn,
+            R.drawable.alexis,
+            R.drawable.alexis,
             R.drawable.axel,
             R.drawable.axel,
             R.drawable.antoine,
             R.drawable.antoine,
-            R.drawable.le_baron_valentin,
-            R.drawable.le_baron_valentin,
+            R.drawable.valentin,
+            R.drawable.valentin,
             R.drawable.corentin,
             R.drawable.corentin
     };
@@ -50,11 +50,11 @@ public class MainActivityGAME extends AppCompatActivity {
     private TextView scoreTextView;
     private int score = 0;
     private int[] allImages = {
-            R.drawable.grelier_jocelyn,
-            R.drawable.fredouillard_alexis,
+            R.drawable.jocelyn,
+            R.drawable.alexis,
             R.drawable.axel,
             R.drawable.antoine,
-            R.drawable.le_baron_valentin,
+            R.drawable.valentin,
             R.drawable.corentin
     };
 

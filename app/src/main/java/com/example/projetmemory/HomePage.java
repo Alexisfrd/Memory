@@ -13,18 +13,38 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+import com.example.projetmemory.databinding.ActivityHomePageBinding;
 
 public class HomePage extends AppCompatActivity {
-    private ActivityHomepageBinding binding;
+    private ActivityHomePageBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_home_page);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        binding = ActivityHomePageBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        binding.buttonStartGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText editTextName = findViewById(R.id.editTextName);
+                RadioGroup radioGroupDifficulty = findViewById(R.id.radioGroupDifficulty);
+
+                if (editTextName.getText().toString().trim().length() > 0 && radioGroupDifficulty.getCheckedRadioButtonId() != -1) {
+                    Intent intent = new Intent(HomePage.this, MainActivityGAME.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(HomePage.this, "Veuillez entrer votre nom et choisir une difficultÃ©", Toast.LENGTH_SHORT).show();
+                }
+            }
         });
+        binding.buttonLeaderboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomePage.this, LeaderBoard.class);
+                startActivity(intent);
+            }
+        });
+
     }
+
 }
