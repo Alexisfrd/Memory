@@ -26,7 +26,7 @@ public class HomePage extends AppCompatActivity {
                 RadioGroup radioGroupDifficulty = findViewById(R.id.radioGroupDifficulty);
 
                 if (editTextName.getText().toString().trim().length() > 0 && radioGroupDifficulty.getCheckedRadioButtonId() != -1) {
-                    Intent intent = new Intent(HomePage.this, LeaderBoard.class);
+                    Intent intent = new Intent(HomePage.this, MainActivity.class);
                     startActivity(intent);
                 } else {
                     Toast.makeText(HomePage.this, "Veuillez entrer votre nom et choisir une difficulté", Toast.LENGTH_SHORT).show();
