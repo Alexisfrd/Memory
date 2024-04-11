@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
     private void revealCard(ImageView iv, int cardTag) {

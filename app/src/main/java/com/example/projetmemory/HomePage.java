@@ -27,6 +27,7 @@ public class HomePage extends AppCompatActivity {
 
                 if (editTextName.getText().toString().trim().length() > 0 && radioGroupDifficulty.getCheckedRadioButtonId() != -1) {
                     Intent intent = new Intent(HomePage.this, MainActivity.class);
+                    intent.putExtra("playerName", editTextName.getText().toString()); // Ajoutez le nom du joueur à l'intent
                     startActivity(intent);
                 } else {
                     Toast.makeText(HomePage.this, "Veuillez entrer votre nom et choisir une difficulté", Toast.LENGTH_SHORT).show();
