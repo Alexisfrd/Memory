@@ -20,8 +20,10 @@ import com.example.projetmemory.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 public class MainActivityGAME extends AppCompatActivity {
 
@@ -55,7 +57,54 @@ public class MainActivityGAME extends AppCompatActivity {
             R.drawable.axel,
             R.drawable.antoine,
             R.drawable.valentin,
-            R.drawable.corentin
+            R.drawable.corentin,
+            R.drawable.arthur,
+            R.drawable.baptiste,
+            R.drawable.florian,
+            R.drawable.maxime,
+            R.drawable.raphael,
+            R.drawable.tom,
+            R.drawable.adrien,
+            R.drawable.alexandre,
+            R.drawable.andreas,
+            R.drawable.anthony,
+            R.drawable.anthony2,
+            R.drawable.antoine2,
+            R.drawable.antonin,
+            R.drawable.antonin2,
+            R.drawable.armand,
+            R.drawable.armand2,
+            R.drawable.arthur2,
+            R.drawable.baptiste,
+            R.drawable.baptiste2,
+            R.drawable.bastien,
+            R.drawable.clemence,
+            R.drawable.enzo,
+            R.drawable.etienne,
+            R.drawable.evan,
+            R.drawable.florian,
+            R.drawable.florian2,
+            R.drawable.florian3,
+            R.drawable.guillaume,
+            R.drawable.jules,
+            R.drawable.justin,
+            R.drawable.killian,
+            R.drawable.leo,
+            R.drawable.loan,
+            R.drawable.marin,
+            R.drawable.mathieu,
+            R.drawable.mathis,
+            R.drawable.maxime,
+            R.drawable.maxime2,
+            R.drawable.milaine,
+            R.drawable.nathan,
+            R.drawable.nathanael,
+            R.drawable.raphael,
+            R.drawable.romain,
+            R.drawable.steve,
+            R.drawable.theo,
+            R.drawable.timothe,
+            R.drawable.tom2
     };
 
     private ImageView card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12;
@@ -94,6 +143,7 @@ public class MainActivityGAME extends AppCompatActivity {
                 }
             }
         });
+
         //Moi
         chronometer = findViewById(R.id.chrono);
 
@@ -190,35 +240,25 @@ public class MainActivityGAME extends AppCompatActivity {
 
     private void initialisation() {
         cardList = new ArrayList<>();
-        cardList.add(0);
-        cardList.add(1);
-        cardList.add(2);
-        cardList.add(3);
-        cardList.add(4);
-        cardList.add(5);
-        cardList.add(6);
-        cardList.add(7);
-        cardList.add(8);
-        cardList.add(9);
-        cardList.add(10);
-        cardList.add(11);
+        Random random = new Random();
+        Set<Integer> usedImages = new HashSet<>();
 
-        Collections.shuffle(cardList, new Random());
+        while (usedImages.size() < 6) {
+            int index = random.nextInt(allImages.length);
+            int imageId = allImages[index];
 
-        List<Integer> tempImages = new ArrayList<>();
-        int[] imageCounts = new int[cardArray.length];
+            if (!usedImages.contains(imageId)) {
+                cardList.add(imageId);
+                cardList.add(imageId);
 
-        for (Integer index : cardList) {
-            if (imageCounts[index] < 2) {
-                tempImages.add(cardArray[index]); // Ajoutez chaque image une fois
-                imageCounts[index]++;
+                usedImages.add(imageId);
             }
         }
 
-        // Mélangez la liste temporaire
-        Collections.shuffle(tempImages);
+        Collections.shuffle(cardList, new Random());
+        List<Integer> tempImages = new ArrayList<>(cardList);
+        Collections.shuffle(tempImages, random);
 
-        // Remplissez cardArray avec les images mélangées
         for (int i = 0; i < cardArray.length; i++) {
             cardArray[i] = tempImages.get(i);
         }
