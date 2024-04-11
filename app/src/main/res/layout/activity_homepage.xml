@@ -46,21 +46,18 @@
             android:layout_height="wrap_content"
             android:text="Difficile" />
     </RadioGroup>
+
     <Button
         android:id="@+id/buttonStartGame"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="124dp"
-        android:layout_marginBottom="248dp"
-        android:text="Commencer le jeu"
-        android:layout_marginTop="32dp"/>
+        android:layout_marginTop="32dp"
+        android:text="Commencer le jeu" />
 
     <Button
         android:id="@+id/buttonLeaderboard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="120dp"
-        android:layout_marginBottom="72dp"
         android:text="Voir le classement"
         android:layout_marginTop="16dp"/>
 

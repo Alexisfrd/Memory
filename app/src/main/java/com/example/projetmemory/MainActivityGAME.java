@@ -1,29 +1,33 @@
 package com.example.projetmemory;
 
-import static android.view.View.VISIBLE;
-
-import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.example.projetmemory.databinding.ActivityMainBinding;
 
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
+import java.util.Timer;
 
 public class MainActivityGAME extends AppCompatActivity {
 
@@ -31,25 +35,6 @@ public class MainActivityGAME extends AppCompatActivity {
     private TextView timerTextView;
     private CountDownTimer countDownTimer;
     private Chronometer chronometer;
-
-    //PARTIE D'AXEL(JEU)
-    private List<Integer> cardList;
-    private int[] cardArray = {R.drawable.jocelyn,
-            R.drawable.jocelyn,
-            R.drawable.alexis,
-            R.drawable.alexis,
-            R.drawable.axel,
-            R.drawable.axel,
-            R.drawable.antoine,
-            R.drawable.antoine,
-            R.drawable.valentin,
-            R.drawable.valentin,
-            R.drawable.corentin,
-            R.drawable.corentin
-    };
-
-    //Partie Alexis
-    private TextView scoreTextView;
     private int score = 0;
     private int[] allImages = {
             R.drawable.jocelyn,
@@ -107,44 +92,33 @@ public class MainActivityGAME extends AppCompatActivity {
             R.drawable.tom2
     };
 
+    private TextView scoreTextView;
+    private List<Integer> cardList;
+    private int[] cardArray = {R.drawable.jocelyn,
+            R.drawable.jocelyn,
+            R.drawable.alexis,
+            R.drawable.alexis,
+            R.drawable.axel,
+            R.drawable.axel,
+            R.drawable.antoine,
+            R.drawable.antoine,
+            R.drawable.valentin,
+            R.drawable.valentin,
+            R.drawable.corentin,
+            R.drawable.corentin
+    };
+
     private ImageView card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12;
     private int clickedCard1, clickedCard2;
     private int flippedCard1, flippedCard2;
     private int cardCounter = 0;
-
-    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
-        /*ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.button), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });*/
-        final float scale = getResources().getDisplayMetrics().density;
-        DisplayMetrics metrics = getResources().getDisplayMetrics();
-        int widthMax = (int) (metrics.widthPixels / scale);
-        int heightMax = (int) (metrics.heightPixels / scale);
 
-
-        //PARTIE AXEL JEU
         initialisation();
-
-        Button restartButton = findViewById(R.id.button);
-        restartButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (score == 6) {
-                    resetGame(); // Appel à la méthode de réinitialisation du jeu
-                }
-            }
-        });
-
-        //Moi
         chronometer = findViewById(R.id.chrono);
 
         //timerTextView = findViewById(R.id.timer_textView);
@@ -165,8 +139,7 @@ public class MainActivityGAME extends AppCompatActivity {
                 //timerTextView.setText("Temps écoulé: " + seconds + " secondes");
             }
         });
-
-
+        scoreTextView = findViewById(R.id.textView);
     }
 
     private void revealCard(ImageView iv, int cardTag) {
@@ -189,6 +162,14 @@ public class MainActivityGAME extends AppCompatActivity {
             if (clickedCard1 == clickedCard2) {
                 iv.setVisibility(View.INVISIBLE);
                 findViewById(getIdFromTag(flippedCard1)).setVisibility(View.INVISIBLE);
+                score++; // Incrémentez le score
+                scoreTextView.setText("Score: " + score); // Mettez à jour le TextView du score
+
+                // Vérifiez si toutes les paires ont été trouvées
+                if (score == 6) {
+                    // Affichez un message de félicitations
+                    Toast.makeText(MainActivityGAME.this, "Bien joué ! Vous avez gagné !", Toast.LENGTH_SHORT).show();
+                }
             } else {
                 final ImageView iv1 = findViewById(getIdFromTag(flippedCard1));
                 final ImageView iv2 = findViewById(getIdFromTag(flippedCard2));
@@ -296,15 +277,22 @@ public class MainActivityGAME extends AppCompatActivity {
                 public void onClick(View v) {
                     int cardTag = Integer.parseInt((String) v.getTag());
                     revealCard((ImageView) v, cardTag);
+                    if (score == 6) {
+                        resetGame();
+                        Intent intent = new Intent(MainActivityGAME.this, LeaderBoard.class);
+                        startActivity(intent);
+                    }
+
                 }
             });
         }
     }
+
     private void resetGame() {
         for (ImageView iv : new ImageView[]{card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12}) {
             iv.setImageResource(R.drawable.dos);
             iv.setEnabled(true);
-            iv.setVisibility(VISIBLE); // Assurez-vous que la carte est visible
+            iv.setVisibility(View.VISIBLE);
         }
 
         initialisation(); // Réinitialise les cartes
@@ -313,6 +301,5 @@ public class MainActivityGAME extends AppCompatActivity {
         score = 0;
         scoreTextView.setText("Score: " + score);
     }
-}
 
-    //CACAVAL
+}
