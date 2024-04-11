@@ -2,7 +2,17 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.ProjetMemory" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/bleu</item>
+        <item name="colorPrimaryVariant">@color/bleu_foncé</item>
+        <item name="colorOnPrimary">@color/blanc</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/vert_futuriste</item>
+        <item name="colorSecondaryVariant">@color/vert</item>
+        <item name="colorOnSecondary">@color/blanc</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
     </style>
 
     <style name="Theme.ProjetMemory" parent="Base.Theme.ProjetMemory" />
