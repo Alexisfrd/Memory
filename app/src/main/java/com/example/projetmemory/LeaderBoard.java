@@ -24,6 +24,14 @@ public class LeaderBoard extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        binding.buttonRestart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(LeaderBoard.this, MainActivityGAME.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
