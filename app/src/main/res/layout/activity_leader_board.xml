@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -8,66 +8,42 @@
     android:orientation="vertical"
     tools:context=".LeaderBoard">
 
-    <TextView
-        android:id="@+id/textViewTitle"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Tableau des scores"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:gravity="center"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <TextView
-            android:id="@+id/text_nom"
+            android:id="@+id/EAZY"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:text="Nom" />
+            android:layout_marginTop="56dp"
+            android:text="tableau des scores"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/separateur"
+        <LinearLayout
+            android:id="@+id/fragment_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="................................." />
+            android:layout_marginTop="14dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/menu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/EAZY"></LinearLayout>
 
-        <TextView
-            android:id="@+id/text_score"
+        <Button
+            android:id="@+id/menu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Score" />
+            android:layout_marginBottom="52dp"
+            android:text="menu principal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/fragment_score"
-        android:layout_width="match_parent"
-        android:layout_height="416dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/button_restart"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="19dp"
-        android:text="Rejouer"
-        />
-
-    <Button
-        android:id="@+id/menu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Menu principal" />
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

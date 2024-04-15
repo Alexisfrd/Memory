@@ -2,13 +2,9 @@ package com.example.projetmemory;
 
 import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -55,20 +51,26 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener{
         binding.buttonStartGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText editTextName = findViewById(R.id.editTextName);
+                EditText editTextName = findViewById(R.id.pseudo);
                 RadioGroup radioGroupDifficulty = findViewById(R.id.radioGroupDifficulty);
-                RadioButton radioButton = findViewById(R.id.radioButtonEasy);
-                RadioButton radioButton1 = findViewById(R.id.radioButtonMedium);
-                RadioButton radioButton2 = findViewById(R.id.radioButtonHard);
+                RadioButton radioButtonEasy = findViewById(R.id.radioButtonEasy);
+                RadioButton radioButtonMedium = findViewById(R.id.radioButtonMedium);
+                RadioButton radioButtonHard = findViewById(R.id.radioButtonHard);
 
-                if (editTextName.getText().toString().trim().length() > 0 && radioButton.isChecked()) {
+                Donnees donnees = new Donnees(binding.pseudo.getText().toString());
+
+
+                if (editTextName.getText().toString().trim().length() > 0 && radioButtonEasy.isChecked()) {
                     Intent intent = new Intent(HomePage.this, MainActivityGAME.class);
+                    intent.putExtra("donnees", donnees);
                     startActivity(intent);
-                } else if(editTextName.getText().toString().trim().length() > 0 && radioButton1.isChecked()){
-                    Intent intent = new Intent(HomePage.this, ActivityGameHard.class);
+                } else if(editTextName.getText().toString().trim().length() > 0 && radioButtonHard.isChecked()){
+                    Intent intent = new Intent(HomePage.this,ActivityGameMedium.class);
+                    intent.putExtra("donnees", donnees);
                     startActivity(intent);
-                } else if(editTextName.getText().toString().trim().length() > 0 && radioButton2.isChecked()){
-                    Intent intent = new Intent(HomePage.this, ActivityGameMedium.class);
+                } else if(editTextName.getText().toString().trim().length() > 0 && radioButtonMedium.isChecked()){
+                    Intent intent = new Intent(HomePage.this,ActivityGameHard.class);
+                    intent.putExtra("donnees", donnees);
                     startActivity(intent);
                 } else {
                     Toast.makeText(HomePage.this, "Veuillez entrer votre nom et choisir une difficultÃ©", Toast.LENGTH_SHORT).show();
@@ -91,6 +93,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener{
         binding.radioButtonEasy.setOnClickListener(this);
         binding.radioButtonMedium.setOnClickListener(this);
         binding.radioButtonHard.setOnClickListener( this);
+
     }
 
 

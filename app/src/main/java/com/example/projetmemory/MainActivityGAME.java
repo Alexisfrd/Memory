@@ -1,6 +1,7 @@
 package com.example.projetmemory;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
@@ -30,7 +31,8 @@ import java.util.Set;
 import java.util.Timer;
 
 public class MainActivityGAME extends AppCompatActivity {
-
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
     private ActivityMainBinding binding;
     private TextView timerTextView;
     private CountDownTimer countDownTimer;
@@ -112,6 +114,8 @@ public class MainActivityGAME extends AppCompatActivity {
     private int clickedCard1, clickedCard2;
     private int flippedCard1, flippedCard2;
     private int cardCounter = 0;
+
+    private long elapsedMillis;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -130,7 +134,7 @@ public class MainActivityGAME extends AppCompatActivity {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
                 // Obtient le temps écoulé en millisecondes
-                long elapsedMillis = SystemClock.elapsedRealtime() - chronometer.getBase();
+                elapsedMillis = SystemClock.elapsedRealtime() - chronometer.getBase();
 
                 // Convertit les millisecondes en secondes
                 int seconds = (int) (elapsedMillis / 1000);
@@ -140,6 +144,29 @@ public class MainActivityGAME extends AppCompatActivity {
             }
         });
         scoreTextView = findViewById(R.id.textView);
+
+        // Récupérer l'intent qui a démarré cette activité
+        Intent intent = getIntent();
+
+        // Récupérer l'objet Donnees à partir de l'intent
+        Donnees donnees = (Donnees) intent.getSerializableExtra("donnees");
+
+        // Vérifier si l'objet Donnees est null
+        if (donnees != null) {
+            // Récupérer le pseudo du joueur à partir de l'objet Donnees
+            String pseudo = donnees.getName();
+
+            // Récupérer le TextView textPseudo
+            TextView textPseudo = findViewById(R.id.textPseudo);
+
+            // Afficher le pseudo dans le TextView
+            textPseudo.setText(pseudo);
+        } else {
+            // Gérer le cas où l'objet Donnees est null
+            // Par exemple, afficher un message d'erreur ou définir un pseudo par défaut
+        }
+        pref = getSharedPreferences("playerData", MODE_PRIVATE);
+        editor = pref.edit();
     }
 
     private void revealCard(ImageView iv, int cardTag) {
@@ -278,7 +305,24 @@ public class MainActivityGAME extends AppCompatActivity {
                     int cardTag = Integer.parseInt((String) v.getTag());
                     revealCard((ImageView) v, cardTag);
                     if (score == 6) {
+
+                        // sauvegarde du score et du pseudo du joueur dans les SharedPreferences
+                        // sauvegarde du score et du pseudo du joueur dans les SharedPreferences
+
+                        editor.putString(binding.textPseudo.getText().toString() + "_name", binding.textPseudo.getText().toString());
+                        editor.putInt(binding.textPseudo.getText().toString() + "_score", (int) elapsedMillis);
+                        editor.apply();
+
+
+                        /*
+                        editor.putString("namePlayer", binding.textPseudo.getText().toString());
+                        editor.putInt("Score", binding.chrono.getText().toString().length());
+                        editor.apply();
+
+
+                         */
                         resetGame();
+
                         Intent intent = new Intent(MainActivityGAME.this, LeaderBoard.class);
                         startActivity(intent);
                     }

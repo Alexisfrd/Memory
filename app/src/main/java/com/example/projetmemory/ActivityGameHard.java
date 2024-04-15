@@ -1,6 +1,7 @@
 package com.example.projetmemory;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
@@ -26,6 +27,8 @@ import java.util.Random;
 import java.util.Set;
 
 public class ActivityGameHard extends AppCompatActivity {
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
     private ActivityMainBinding binding;
     private TextView timerTextView;
     private CountDownTimer countDownTimer;
@@ -113,11 +116,13 @@ public class ActivityGameHard extends AppCompatActivity {
     private int clickedCard1, clickedCard2;
     private int flippedCard1, flippedCard2;
     private int cardCounter = 0;
+    private long elapsedMillis;
+    TextView textPseudo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_game_hard);
+        setContentView(R.layout.activity_game_medium);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -135,7 +140,7 @@ public class ActivityGameHard extends AppCompatActivity {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
                 // Obtient le temps écoulé en millisecondes
-                long elapsedMillis = SystemClock.elapsedRealtime() - chronometer.getBase();
+                elapsedMillis = SystemClock.elapsedRealtime() - chronometer.getBase();
 
                 // Convertit les millisecondes en secondes
                 int seconds = (int) (elapsedMillis / 1000);
@@ -145,6 +150,29 @@ public class ActivityGameHard extends AppCompatActivity {
             }
         });
         scoreTextView = findViewById(R.id.textView);
+
+        // Récupérer l'intent qui a démarré cette activité
+        Intent intent = getIntent();
+
+        // Récupérer l'objet Donnees à partir de l'intent
+        Donnees donnees = (Donnees) intent.getSerializableExtra("donnees");
+
+        // Vérifier si l'objet Donnees est null
+        if (donnees != null) {
+            // Récupérer le pseudo du joueur à partir de l'objet Donnees
+            String pseudo = donnees.getName();
+
+            // Récupérer le TextView textPseudo
+            textPseudo = findViewById(R.id.textPseudoHard);
+
+            // Afficher le pseudo dans le TextView
+            textPseudo.setText(pseudo);
+        } else {
+            // Gérer le cas où l'objet Donnees est null
+            // Par exemple, afficher un message d'erreur ou définir un pseudo par défaut
+        }
+        pref = getSharedPreferences("playerData", MODE_PRIVATE);
+        editor = pref.edit();
     }
 
     private void revealCard(ImageView iv, int cardTag) {
@@ -307,6 +335,10 @@ public class ActivityGameHard extends AppCompatActivity {
                     int cardTag = Integer.parseInt((String) v.getTag());
                     revealCard((ImageView) v, cardTag);
                     if (score == 9) {
+                        editor.putString(textPseudo.getText().toString() + "_name", textPseudo.getText().toString());
+                        editor.putInt(textPseudo.getText().toString() + "_score", (int) elapsedMillis);
+                        editor.apply();
+
                         resetGame();
                         Intent intent = new Intent(ActivityGameHard.this, LeaderBoard.class);
                         startActivity(intent);
