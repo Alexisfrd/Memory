@@ -89,18 +89,34 @@ public class ActivityGameMedium extends AppCompatActivity {
 
     private TextView scoreTextView;
     private List<Integer> cardList;
-    private int[] cardArray = {R.drawable.jocelyn_medium,
+    private int[] cardArray = {
+            R.drawable.jocelyn_medium,
             R.drawable.jocelyn_medium,
             R.drawable.alexis_medium,
             R.drawable.alexis_medium,
             R.drawable.axel_medium,
             R.drawable.axel_medium,
+
             R.drawable.antoine_medium,
             R.drawable.antoine_medium,
             R.drawable.valentin_medium,
             R.drawable.valentin_medium,
             R.drawable.corentin_medium,
-            R.drawable.corentin_medium
+            R.drawable.corentin_medium,
+
+            R.drawable.nathanael_medium,
+            R.drawable.nathanael_medium,
+            R.drawable.raphael_medium,
+            R.drawable.raphael_medium,
+            R.drawable.romain_medium,
+            R.drawable.romain_medium,
+
+            R.drawable.steve_medium,
+            R.drawable.steve_medium,
+            R.drawable.theo_medium,
+            R.drawable.theo_medium,
+            R.drawable.timoth__medium,
+            R.drawable.timoth__medium
     };
 
     private ImageView card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15, card16, card17, card18, card19, card20, card21, card22, card23, card24;

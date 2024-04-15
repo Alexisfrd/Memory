@@ -100,10 +100,16 @@ public class ActivityGameHard extends AppCompatActivity {
             R.drawable.valentin,
             R.drawable.valentin,
             R.drawable.corentin,
-            R.drawable.corentin
+            R.drawable.corentin,
+            R.drawable.nathanael,
+            R.drawable.nathanael,
+            R.drawable.raphael,
+            R.drawable.raphael,
+            R.drawable.romain,
+            R.drawable.romain,
     };
 
-    private ImageView card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12;
+    private ImageView card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15, card16, card17, card18;
     private int clickedCard1, clickedCard2;
     private int flippedCard1, flippedCard2;
     private int cardCounter = 0;
@@ -165,7 +171,7 @@ public class ActivityGameHard extends AppCompatActivity {
                 scoreTextView.setText("Score: " + score); // Mettez à jour le TextView du Score
 
                 // Vérifiez si toutes les paires ont été trouvées
-                if (score == 6) {
+                if (score == 9) {
                     // Affichez un message de félicitations
                     Toast.makeText(ActivityGameHard.this, "Bien joué ! Vous avez gagné !", Toast.LENGTH_SHORT).show();
                 }
@@ -190,29 +196,41 @@ public class ActivityGameHard extends AppCompatActivity {
     private int getIdFromTag(int tag) {
         switch (tag) {
             case 0:
-                return R.id.imageButton2;
+                return R.id.imageButton22;
             case 1:
-                return R.id.imageButton3;
+                return R.id.imageButton39;
             case 2:
-                return R.id.imageButton4;
+                return R.id.imageButton40;
             case 3:
-                return R.id.imageButton5;
+                return R.id.imageButton41;
             case 4:
-                return R.id.imageButton6;
+                return R.id.imageButton42;
             case 5:
-                return R.id.imageButton7;
+                return R.id.imageButton43;
             case 6:
-                return R.id.imageButton8;
+                return R.id.imageButton44;
             case 7:
-                return R.id.imageButton9;
+                return R.id.imageButton45;
             case 8:
-                return R.id.imageButton10;
+                return R.id.imageButton46;
             case 9:
-                return R.id.imageButton11;
+                return R.id.imageButton47;
             case 10:
-                return R.id.imageButton12;
+                return R.id.imageButton48;
             case 11:
-                return R.id.imageButton13;
+                return R.id.imageButton49;
+            case 12:
+                return R.id.imageButton50;
+            case 13:
+                return R.id.imageButton51;
+            case 14:
+                return R.id.imageButton52;
+            case 15:
+                return R.id.imageButton53;
+            case 16:
+                return R.id.imageButton54;
+            case 17:
+                return R.id.imageButton55;
             default:
                 return 0;
         }
@@ -223,7 +241,7 @@ public class ActivityGameHard extends AppCompatActivity {
         Random random = new Random();
         Set<Integer> usedImages = new HashSet<>();
 
-        while (usedImages.size() < 6) {
+        while (usedImages.size() < 9) {
             int index = random.nextInt(allImages.length);
             int imageId = allImages[index];
 
@@ -243,18 +261,24 @@ public class ActivityGameHard extends AppCompatActivity {
             cardArray[i] = tempImages.get(i);
         }
 
-        card1 = findViewById(R.id.imageButton2);
-        card2 = findViewById(R.id.imageButton3);
-        card3 = findViewById(R.id.imageButton4);
-        card4 = findViewById(R.id.imageButton5);
-        card5 = findViewById(R.id.imageButton6);
-        card6 = findViewById(R.id.imageButton7);
-        card7 = findViewById(R.id.imageButton8);
-        card8 = findViewById(R.id.imageButton9);
-        card9 = findViewById(R.id.imageButton10);
-        card10 = findViewById(R.id.imageButton11);
-        card11 = findViewById(R.id.imageButton12);
-        card12 = findViewById(R.id.imageButton13);
+        card1 = findViewById(R.id.imageButton22);
+        card2 = findViewById(R.id.imageButton39);
+        card3 = findViewById(R.id.imageButton40);
+        card4 = findViewById(R.id.imageButton41);
+        card5 = findViewById(R.id.imageButton42);
+        card6 = findViewById(R.id.imageButton43);
+        card7 = findViewById(R.id.imageButton44);
+        card8 = findViewById(R.id.imageButton45);
+        card9 = findViewById(R.id.imageButton46);
+        card10 = findViewById(R.id.imageButton47);
+        card11 = findViewById(R.id.imageButton48);
+        card12 = findViewById(R.id.imageButton49);
+        card13 = findViewById(R.id.imageButton50);
+        card14= findViewById(R.id.imageButton51);
+        card15 = findViewById(R.id.imageButton52);
+        card16 = findViewById(R.id.imageButton53);
+        card17 = findViewById(R.id.imageButton54);
+        card18 = findViewById(R.id.imageButton55);
 
         card1.setTag("0");
         card2.setTag("1");
@@ -268,15 +292,21 @@ public class ActivityGameHard extends AppCompatActivity {
         card10.setTag("9");
         card11.setTag("10");
         card12.setTag("11");
+        card13.setTag("12");
+        card14.setTag("13");
+        card15.setTag("14");
+        card16.setTag("15");
+        card17.setTag("16");
+        card18.setTag("17");
 
-        for (ImageView iv : new ImageView[]{card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12}) {
+        for (ImageView iv : new ImageView[]{card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15, card16, card17, card18}) {
             iv.setImageResource(R.drawable.dos);
             iv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int cardTag = Integer.parseInt((String) v.getTag());
                     revealCard((ImageView) v, cardTag);
-                    if (score == 6) {
+                    if (score == 9) {
                         resetGame();
                         Intent intent = new Intent(ActivityGameHard.this, LeaderBoard.class);
                         startActivity(intent);
@@ -288,7 +318,7 @@ public class ActivityGameHard extends AppCompatActivity {
     }
 
     private void resetGame() {
-        for (ImageView iv : new ImageView[]{card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12}) {
+        for (ImageView iv : new ImageView[]{card1, card2, card3, card4, card5, card6, card7, card8, card9, card10, card11, card12, card13, card14, card15, card16, card17, card18}) {
             iv.setImageResource(R.drawable.dos);
             iv.setEnabled(true);
             iv.setVisibility(View.VISIBLE);
