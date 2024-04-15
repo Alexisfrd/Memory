@@ -161,8 +161,8 @@ public class ActivityGameHard extends AppCompatActivity {
             if (clickedCard1 == clickedCard2) {
                 iv.setVisibility(View.INVISIBLE);
                 findViewById(getIdFromTag(flippedCard1)).setVisibility(View.INVISIBLE);
-                score++; // Incrémentez le score
-                scoreTextView.setText("Score: " + score); // Mettez à jour le TextView du score
+                score++; // Incrémentez le Score
+                scoreTextView.setText("Score: " + score); // Mettez à jour le TextView du Score
 
                 // Vérifiez si toutes les paires ont été trouvées
                 if (score == 6) {
@@ -296,7 +296,7 @@ public class ActivityGameHard extends AppCompatActivity {
 
         initialisation(); // Réinitialise les cartes
 
-        // Réinitialise le score et met à jour le TextView
+        // Réinitialise le Score et met à jour le TextView
         score = 0;
         scoreTextView.setText("Score: " + score);
     }
