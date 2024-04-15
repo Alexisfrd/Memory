@@ -10,21 +10,21 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link score#newInstance} factory method to
+ * Use the {@link Score#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class score extends Fragment {
+public class Score extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_NAMEPLAYER = "namePlayer";
+    private static final String ARG_SCORE = "Score";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String mParamNamePlayer;
+    private String mParamScore;
 
-    public score() {
+    public Score() {
         // Required empty public constructor
     }
 
@@ -32,16 +32,16 @@ public class score extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment score.
+     * @param paramNamePlayer Parameter 1.
+     * @param paramScore Parameter 2.
+     * @return A new instance of fragment Score.
      */
     // TODO: Rename and change types and number of parameters
-    public static score newInstance(String param1, String param2) {
-        score fragment = new score();
+    public static Score newInstance(String paramNamePlayer, String paramScore) {
+        Score fragment = new Score();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(ARG_NAMEPLAYER, paramNamePlayer);
+        args.putString(ARG_SCORE, paramScore);
         fragment.setArguments(args);
         return fragment;
     }
@@ -50,8 +50,8 @@ public class score extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            mParamNamePlayer = getArguments().getString(ARG_NAMEPLAYER);
+            mParamNamePlayer = getArguments().getString(ARG_SCORE);
         }
     }
 

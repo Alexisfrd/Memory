@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,18 +18,14 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.projetmemory.databinding.ActivityMainBinding;
 
-import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
-import java.util.Timer;
 
-public class MainActivityGAME extends AppCompatActivity {
-
+public class ActivityGameHard extends AppCompatActivity {
     private ActivityMainBinding binding;
     private TextView timerTextView;
     private CountDownTimer countDownTimer;
@@ -115,9 +110,13 @@ public class MainActivityGAME extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_game_hard);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
         initialisation();
         chronometer = findViewById(R.id.chrono);
 
@@ -168,7 +167,7 @@ public class MainActivityGAME extends AppCompatActivity {
                 // Vérifiez si toutes les paires ont été trouvées
                 if (score == 6) {
                     // Affichez un message de félicitations
-                    Toast.makeText(MainActivityGAME.this, "Bien joué ! Vous avez gagné !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ActivityGameHard.this, "Bien joué ! Vous avez gagné !", Toast.LENGTH_SHORT).show();
                 }
             } else {
                 final ImageView iv1 = findViewById(getIdFromTag(flippedCard1));
@@ -279,7 +278,7 @@ public class MainActivityGAME extends AppCompatActivity {
                     revealCard((ImageView) v, cardTag);
                     if (score == 6) {
                         resetGame();
-                        Intent intent = new Intent(MainActivityGAME.this, LeaderBoard.class);
+                        Intent intent = new Intent(ActivityGameHard.this, LeaderBoard.class);
                         startActivity(intent);
                     }
 
@@ -301,5 +300,24 @@ public class MainActivityGAME extends AppCompatActivity {
         score = 0;
         scoreTextView.setText("Score: " + score);
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent intent = getIntent();
+        if (intent != null) {
+            boolean modeEasy = intent.getBooleanExtra("Easy",false);
+            boolean modeMedium = intent.getBooleanExtra("Medium",false);
+            boolean modeHard = intent.getBooleanExtra("Hard",false);
 
+            if (modeEasy) {
+                //mettre le code du jeu en 12 cartes
+            }
+            if(modeMedium){
+                //mettre le code du jeu en 24 cartes
+            }
+            if(modeHard){
+                //mettre le code du jeu en 48 cartes
+            }
+        }
+    }
 }
