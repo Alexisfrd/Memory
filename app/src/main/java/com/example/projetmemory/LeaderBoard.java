@@ -1,18 +1,19 @@
 
 package com.example.projetmemory;
 
-        import android.content.Intent;
-        import android.content.SharedPreferences;
-        import android.os.Bundle;
-        import android.view.View;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.View;
 
-        import androidx.appcompat.app.AppCompatActivity;
-        import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
-        import com.example.projetmemory.databinding.ActivityLeaderBoardBinding;
+import com.example.projetmemory.databinding.ActivityLeaderBoardBinding;
 
-        import java.util.ArrayList;
-        import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class LeaderBoard extends AppCompatActivity {
 
@@ -42,22 +43,58 @@ public class LeaderBoard extends AppCompatActivity {
             }
         });
 
-        // Enregistrement du nom du joueur et de son Score
-        editor.putString("namePlayer", "John");
-        editor.putInt("Score", 1000);
-        editor.apply();
+
         // Création du fragment avec les données sauvegardées
 
-
+/*
         fragScore = new ArrayList<>();
-        namePlayer1 =pref.getString("namePlayer", "");
-        score = String.valueOf(pref.getInt("Score", 0));
+        fragScore.add(Score.newInstance("nom1", "score1"));
+        fragScore.add(Score.newInstance("nom2", "score2"));
+        fragScore.add(Score.newInstance("nom3", "score3"));
+        fragScore.add(Score.newInstance("nom4", "score4"));
 
-        fragScore.add(Score.newInstance(namePlayer1,score));
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        for(Score frag : fragScore) {
-            ft.add(R.id.fragment_score,frag);
+        for (Score frag : fragScore) {
+            ft.add(R.id.fragment_score, frag);
         }
         ft.commit();
+
+ */
+
+        // Récupérez toutes les entrées des SharedPreferences
+        Map<String, ?> allEntries = pref.getAll();
+
+// Créez une nouvelle liste pour stocker vos fragments
+        fragScore = new ArrayList<>();
+
+// Parcourez chaque entrée
+        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+            // Vérifiez si l'entrée est un nom
+            if (entry.getKey().endsWith("_name")) {
+                // Récupérez le nom
+                String name = (String) entry.getValue();
+
+                // Récupérez le score correspondant
+                int score = pref.getInt(name + "_score", 0);
+
+                // Créez un nouveau fragment avec le nom et le score
+                Score scoreFragment = Score.newInstance(name, String.valueOf(score));
+
+                // Ajoutez le fragment à votre liste
+                fragScore.add(scoreFragment);
+            }
+        }
+
+// Commencez une nouvelle transaction de fragment
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
+// Ajoutez chaque fragment de votre liste à la transaction
+        for (Score frag : fragScore) {
+            ft.add(R.id.fragment_score, frag);
+        }
+
+// Validez la transaction
+        ft.commit();
+
     }
 }

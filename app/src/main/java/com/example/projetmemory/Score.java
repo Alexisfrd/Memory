@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.projetmemory.databinding.FragmentScoreBinding;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link Score#newInstance} factory method to
@@ -17,6 +19,7 @@ public class Score extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private FragmentScoreBinding binding;
     private static final String ARG_NAMEPLAYER = "namePlayer";
     private static final String ARG_SCORE = "Score";
 
@@ -51,7 +54,7 @@ public class Score extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParamNamePlayer = getArguments().getString(ARG_NAMEPLAYER);
-            mParamNamePlayer = getArguments().getString(ARG_SCORE);
+            mParamScore = getArguments().getString(ARG_SCORE);
         }
     }
 
@@ -59,6 +62,9 @@ public class Score extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_score, container, false);
+        binding = FragmentScoreBinding.inflate(inflater, container, false);
+        binding.textNom.setText(mParamNamePlayer);
+        binding.textScore.setText(mParamScore);
+        return binding.getRoot();
     }
 }
